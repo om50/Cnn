@@ -1,0 +1,59 @@
+You are required to implement a Convolutional Neural Network (CNN) using
+Python with Keras library for classifying images from the CIFAR-10 dataset.
+Follow the steps below:
+1. Import the CIFAR-10 dataset and print training data-related information.
+2. Import the necessary libraries for building and training the CNN model.
+3. Specify the initial convolutional block of the CNN.
+4. Add dropout layer for regularization.
+5. Add another convolutional block for CNN.
+6. Define dense layers that consume the feature array and produce a classification.
+7. Compile and train the CNN model.
+8. Evaluate the performance of the trained model.
+9. Check for overfitting using appropriate visualization.
+10. Make predictions using the trained model.
+11. Print the confusion matrix to evaluate the model’s performance.
+
+####   Answer
+
+Question 1: Importing Libraries
+1 import numpy a s np
+2 import m a t pl o tli b . p y pl o t a s p l t
+3 from k e r a s . c a l l b a c k s import E a rl yS t oppin g
+4 from k e r a s . d a t a s e t s import c i f a r 1 0
+5 from k e r a s . models import S e q u e n ti al
+6 from k e r a s . l a y e r s . c o r e import Dense , Dropout , Fl a t t e n
+7 from k e r a s . l a y e r s import LeakyReLU
+8 from k e r a s . l a y e r s . c o n v o l u t i o n a l import Conv2D
+9 from k e r a s . o p timi z e r s import Adam
+10 from k e r a s . l a y e r s . p o oli n g import MaxPooling2D
+11 from k e r a s . u t i l s import t o c a t e g o r i c a l
+12 from s kl e a r n . m e t ri c s import c o n f u si o n m a t ri x
+
+
+
+Question 2: Loading the CIFAR-10 Dataset
+1 # Load CIFAR−10 d a t a s e t
+2 ( X t r ain , Y t r ai n ) , ( X te s t , Y t e s t ) = c i f a r 1 0 . l o a d d a t a
+( )
+3
+4 # P r i n t t r a i n i n g da ta−r e l a t e d i n f o rm a t i o n
+5 p ri n t ( ” Shape o f t r a i n i n g data : ” , X t r ai n . shape )
+6 p ri n t ( ” F i r s t 5 l a b e l s : ” , Y t r ai n [ : 5 ] )
+
+
+
+Question 3: Building the CNN Model
+1 # B u il d CNN model
+2 c l a s s i f i e r = S e q u e n ti al ( )
+3
+4 c l a s s i f i e r . add (Conv2D ( 3 2 , k e r n e l s i z e =(3 , 3 ) , padding=’
+same ’ , i n p u t s h a p e =(32 , 3 2 , 3 ) ) )
+5 c l a s s i f i e r . add ( LeakyReLU ( alph a =0.3) )
+6 c l a s s i f i e r . add (Conv2D ( 6 4 , padding=’ same ’ , k e r n e l s i z e =(3 ,
+3 ) ) )
+7 c l a s s i f i e r . add ( LeakyReLU ( alph a =0.3) )
+8 c l a s s i f i e r . add ( MaxPooling2D ( p o o l s i z e =(2 , 2 ) ) )
+9 c l a s s i f i e r . add ( Dropout ( 0 . 2 5 ) )
+10
+11 c l a s s i f i e r . add (Conv2D ( 1 2 8 , k e r n e l s i z e =(3 , 3 ) ) )
+12 c l a s s i f i e r . add ( MaxPooling2D ( p o o l s i z e =(2 , 2 ) ) )
